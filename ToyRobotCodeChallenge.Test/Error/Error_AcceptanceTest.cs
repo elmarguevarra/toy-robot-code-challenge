@@ -1,5 +1,6 @@
 ﻿using NSubstitute;
 using System;
+using System.IO;
 using ToyRobotCodeChallenge.Application;
 using ToyRobotCodeChallenge.Interfaces;
 using ToyRobotCodeChallenge.Models;
@@ -18,14 +19,20 @@ namespace ToyRobotCodeChallenge.Test.Error
             var toyRobotOutputServiceMock = Substitute.For<IToyRobotOutputService>();
 
             toyRobotInputServiceMock.ReadInputString()
-                .Returns("place 1,2,east");
+                .Returns(
+                    x => "place 1,2,east",
+                    x => "REPORT");
 
             var toyRobotManager = new ToyRobotManager(
                     new ToyRobotInputTranslatorService(toyRobotInputServiceMock), 
                     new ToyRobotService(),
                     toyRobotOutputServiceMock);
 
-            Assert.Throws<Exception>(() => toyRobotManager.Start());
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            toyRobotManager.Start();
+            Assert.Contains("Invalid command", stringWriter.ToString());
         }
     }
 }

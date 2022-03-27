@@ -11,12 +11,23 @@ namespace ToyRobotCodeChallenge.Services
 
         #region Main methods
 
+        /// <summary>
+        /// Puts the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. The origin (0,0)
+        /// </summary>
+        /// <param name="commandArguments"></param>
+        /// <returns></returns>
         public ToyRobotStatus PlaceCommand(ToyRobotStatus commandArguments)
         {
             return commandArguments;
         }
 
-        //NOTE: NORTH and SOUTH displacements are reversed due to requirement that origin (0,0) is to be the SOUTH WEST most corner.
+
+        /// <summary>
+        /// MOVE will move the toy robot one unit forward in the direction it is currently facing.
+        /// NOTE: NORTH and SOUTH displacements are reversed due to requirement that origin (0,0) is to be the SOUTH WEST most corner.
+        /// </summary>
+        /// <param name="toyRobotStatus"></param>
+        /// <returns></returns>
         public ToyRobotStatus MoveCommand(ToyRobotStatus toyRobotStatus)
         {
             var newToyRobotStatus = new ToyRobotStatus();
@@ -48,12 +59,22 @@ namespace ToyRobotCodeChallenge.Services
             return newToyRobotStatus.IsCoordinatesValid ? newToyRobotStatus : toyRobotStatus;
         }
 
+        /// <summary>
+        /// Rotates the robot 90 degrees in the specified direction without changing the position of the robot.
+        /// </summary>
+        /// <param name="toyRobotStatus"></param>
+        /// <returns></returns>
         public ToyRobotStatus LeftCommand(ToyRobotStatus toyRobotStatus)
         {
             var newFaceDirection = determineNewFaceDirection(Side.LEFT, toyRobotStatus.FaceDirection);
             return new ToyRobotStatus(toyRobotStatus.Coordinates, newFaceDirection);
         }
 
+        /// <summary>
+        /// Rotates the robot 90 degrees in the specified direction without changing the position of the robot.
+        /// </summary>
+        /// <param name="toyRobotStatus"></param>
+        /// <returns></returns>
         public ToyRobotStatus RightCommand(ToyRobotStatus toyRobotStatus)
         {
             var newFaceDirection = determineNewFaceDirection(Side.RIGHT, toyRobotStatus.FaceDirection);
@@ -64,6 +85,12 @@ namespace ToyRobotCodeChallenge.Services
 
         #region Helper methods
 
+        /// <summary>
+        /// Identifies the new face direction of toy robot
+        /// </summary>
+        /// <param name="side"></param>
+        /// <param name="faceDirection"></param>
+        /// <returns></returns>
         private FaceDirection determineNewFaceDirection(Side side, FaceDirection faceDirection)
         {
             var direction = (int)faceDirection + (int)side;

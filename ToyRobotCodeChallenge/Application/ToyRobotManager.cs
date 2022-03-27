@@ -25,6 +25,11 @@ namespace ToyRobotCodeChallenge.Application
             _toyRobotOutputService = toyRobotOutputService ?? 
                 throw new ArgumentNullException(nameof(toyRobotOutputService));
         }
+
+        /// <summary>
+        /// Orchestrates the system based on the command supplied
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         public void Start()
         {
             var isToyRobotPlacedInTable = false;
@@ -62,6 +67,9 @@ namespace ToyRobotCodeChallenge.Application
                                 _toyRobotOutputService.ReportCommand(toyRobotStatus);
                             break;
                     }
+
+                    //NOTE: Based on the examples, REPORT commands seems to terminate the application.
+                    // This code is added to mimic the behavior and to terminate the application in test runs.
                     if (command.Operation == Operation.REPORT)
                     {
                         break;
@@ -69,8 +77,7 @@ namespace ToyRobotCodeChallenge.Application
                 }
                 catch (Exception e)
                 {
-                    //NOTE: It is not explicitly defined in the requirements that further valid movement commands must still be allowed after error state.
-                    throw new Exception(e.Message);
+                    Console.WriteLine(e.Message);
                 }
             }
         }

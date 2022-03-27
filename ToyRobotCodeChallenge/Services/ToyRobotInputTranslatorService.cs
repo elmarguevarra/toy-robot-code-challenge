@@ -16,6 +16,12 @@ namespace ToyRobotCodeChallenge.Services
             _toyRobotInputService = toyRobotInputService ??
                 throw new ArgumentNullException(nameof(toyRobotInputService));
         }
+
+        /// <summary>
+        /// Translate the string input to command object.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public Command TranslateInputCommand()
         {
             try
