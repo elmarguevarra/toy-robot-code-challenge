@@ -1,4 +1,4 @@
-# ToyRobotCodeChallenge
+# Toy Robot Code Challenge
 
 ### Introduction
 This application is a simulation of a toy moving on a square table top of dimensions 5 units x 5 units.
