@@ -26,7 +26,7 @@ however further valid movement commands must still be allowed.
             - REPORT will announce the X,Y and F of the robot.This will also terminates the application.
 
 
-### NOTES:
+### Note:
  - A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT and REPORT commands.
  - Any input string other than the stated commands and format above will raise an error "Invalid command".
  - Any movement that would cause the robot to fall would be ignored. This also includes the initial placement of the toy robot.
