@@ -1,15 +1,17 @@
 # ToyRobotCodeChallenge
 
-INTRODUCTION:
+### Introduction
 This application is a simulation of a toy moving on a square table top of dimensions 5 units x 5 units.
 There are no other obstructions on the table surface. The robot is free to roam around the surface of the table, but must be prevented
 from falling to destruction. Any movement that would result in the robot falling from the table must be prevented,
 however further valid movement commands must still be allowed.
 
-HOW TO USE THE APPLICATION:
-1. Open ToyRobotCodeChallenge.sln
-2. Set ToyRobotCodeChallenge as startup project then run.
-3. You will be prompted with blank console application that you use to type the following commands below to control your robot.
+### How to run the application
+1. Change directory to ToyRobotCodeChallenge folder
+2. Build the Docker image ```docker build -t toyrobotcodechallenge .```
+3. Run the Docker container ```docker run -it --rm  toyrobotcodechallenge```
+
+ You will be prompted with blank console application that you use to type the following commands below to control your robot.
     Commands:
         1. PLACE X,Y,F
             - PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. The origin (0,0)
@@ -23,13 +25,14 @@ HOW TO USE THE APPLICATION:
         4. REPORT
             - REPORT will announce the X,Y and F of the robot.This will also terminates the application.
 
-NOTES:
+
+### NOTES:
  - A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT and REPORT commands.
  - Any input string other than the stated commands and format above will raise an error "Invalid command".
  - Any movement that would cause the robot to fall would be ignored. This also includes the initial placement of the toy robot.
 
 
-Example Input and Output
+### Example Input and Output
 
 a) ---------------------------
 
